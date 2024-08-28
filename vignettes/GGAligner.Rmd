@@ -26,7 +26,7 @@ This vignette provides an overview of how to use the GGAligner package.
 You can use the `ggBamLoader` function to load BAM/SAM files:
 
 ```{r}
-df_gg <- ggBamLoader("C:/Users/gabbe/Downloads/ERR188273_chrX.bam")
+df_gg <- ggBamLoader("../inst/extdata/subset.bam")
 df_gg[1:5,]
 ```
 
@@ -46,6 +46,11 @@ result
 ```
 
 In the end the function will return the reference and the aligned sequence as DNAString objects for color highlighting and better usability.
+
+
+```{r}
+sessionInfo()
+```
 
 
 

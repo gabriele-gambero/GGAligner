@@ -44,14 +44,16 @@ If the \code{index} parameter is used, it will directly select the read at the g
 parameter will be ignored in this case. The \code{index} parameter must be a valid row index in the DataFrame.
 }
 \examples{
-# Assuming `df_gg` is a DataFrame obtained from `ggBamLoader`
-
+# Create a small mock df_gg DataFrame
 if (requireNamespace("BSgenome.Hsapiens.UCSC.hg38", quietly = TRUE)) {
-# Align read using qname
-result1 <- ggAligner(df_gg, qname = "read1234", my_reference = "BSgenome.Hsapiens.UCSC.hg38")
-
-# Align read using index
-result2 <- ggAligner(df_gg, index = 5, my_reference = "BSgenome.Hsapiens.UCSC.hg38")
+  df_gg <- ggBamLoader(system.file("extdata", "subset.bam", package = "GGAligner"))
+  
+  # Align read using qname
+  result1 <- ggAligner(df_gg, qname = "ERR188273.4711308", my_reference = "BSgenome.Hsapiens.UCSC.hg38")
+  
+  # Align read using index
+  result2 <- ggAligner(df_gg, index = 3, my_reference = "BSgenome.Hsapiens.UCSC.hg38")
+  
 } else {
   message("Skipping example as BSgenome.Hsapiens.UCSC.hg38 is not installed.")
 }

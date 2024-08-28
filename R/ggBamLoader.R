@@ -10,10 +10,8 @@
 #' @importFrom Rsamtools scanBam asBam
 #' @importFrom S4Vectors DataFrame
 #' @examples
-#' \dontrun{
-#' # Load a BAM file
-#' df <- ggBamLoader("path/to/file.bam")
-#' }
+#' # Load a BAM file from the package's extdata folder
+#' df_gg <- ggBamLoader(system.file("extdata", "subset.bam", package = "GGAligner"))
 
 
 ggBamLoader <- function(bampath) {

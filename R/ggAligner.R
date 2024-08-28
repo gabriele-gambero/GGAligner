@@ -30,14 +30,16 @@
 #' parameter will be ignored in this case. The `index` parameter must be a valid row index in the DataFrame.
 #' 
 #' @examples
-#' # Assuming `df_gg` is a DataFrame obtained from `ggBamLoader`
-#' 
+#' # Create a small mock df_gg DataFrame
 #' if (requireNamespace("BSgenome.Hsapiens.UCSC.hg38", quietly = TRUE)) {
-#' # Align read using qname
-#' result1 <- ggAligner(df_gg, qname = "read1234", my_reference = "BSgenome.Hsapiens.UCSC.hg38")
-#' 
-#' # Align read using index
-#' result2 <- ggAligner(df_gg, index = 5, my_reference = "BSgenome.Hsapiens.UCSC.hg38")
+#'   df_gg <- ggBamLoader(system.file("extdata", "subset.bam", package = "GGAligner"))
+#'   
+#'   # Align read using qname
+#'   result1 <- ggAligner(df_gg, qname = "ERR188273.4711308", my_reference = "BSgenome.Hsapiens.UCSC.hg38")
+#'   
+#'   # Align read using index
+#'   result2 <- ggAligner(df_gg, index = 3, my_reference = "BSgenome.Hsapiens.UCSC.hg38")
+#'   
 #' } else {
 #'   message("Skipping example as BSgenome.Hsapiens.UCSC.hg38 is not installed.")
 #' }
@@ -51,16 +53,16 @@ ggAligner <- function(df_gg, qname = NULL, index = NULL, my_reference) {
   
   # ----------------------------------------------------------
   # Extract the reference genome
-  if (!requireNamespace("BiocManager", quietly = TRUE)) {
-    install.packages("BiocManager")
+  if (!requireNamespace("BSgenome", quietly = TRUE)) {
+    stop("The 'BSgenome' package is required but not installed. Please install it before proceeding.")
   }
+  
   if (!requireNamespace(my_reference, quietly = TRUE)) {
-    BiocManager::install(my_reference)
+    stop(paste("The", my_reference, "package is required but not installed. Please install it before proceeding."))
   }
   
   # Load the reference genome
   genome <- BSgenome::getBSgenome(my_reference)
-  
   
   
   # ----------------------------------------------------------

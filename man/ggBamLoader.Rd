@@ -17,8 +17,6 @@ This function loads a BAM/SAM file, checks if the format is correct, and
 converts it to an S4 class DataFrame for easier manipulation.
 }
 \examples{
-\dontrun{
-# Load a BAM file
-df <- ggBamLoader("path/to/file.bam")
-}
+# Load a BAM file from the package's extdata folder
+df_gg <- ggBamLoader(system.file("extdata", "subset.bam", package = "GGAligner"))
 }
